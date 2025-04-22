@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TradingView</title>
+    <link rel="icon" href="https://static.tradingview.com/static/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://static.tradingview.com/static/images/favicon/apple-touch-icon-180x180.png">
+    <style>
+        body {
+            background-color: black;
+        }
+        .block-columns {
+            width: 100%
+        }
+        .block-column {
+            float: left;
+            width: 50%;
+            min-height: 450px;
+            min-width: 570px;
+        }
+        .tradingview-widget-container__widget {
+            min-height: 450px;
+        }
+
+        @media (max-width: 1185px) {
+          .block-columns {
+            width: calc(100% - 2em);
+            padding: 0 1em;
+            display: block;
+          }
+          .block-columns .block-column{
+            width: 100%;
+            margin: 0 auto;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="block-columns">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+            {
+            "symbols": [
+            {
+                "description": "",
+                "proName": "FX:USDJPY"
+            },
+            {
+                "description": "",
+                "proName": "CRYPTO:BTCUSD"
+            },
+            {
+                "description": "",
+                "proName": "CRYPTO:XRPUSD"
+            },
+            {
+                "description": "",
+                "proName": "CRYPTO:SHIBUSD"
+            },
+            {
+                "description": "",
+                "proName": "CRYPTO:DOGEUSD"
+            }
+            ],
+            "isTransparent": false,
+            "showSymbolLogo": true,
+            "colorTheme": "dark",
+            "locale": "ja"
+        }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+
+        <div class="block-column">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "CRYPTO:BTCUSD",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "CRYPTO:XRPUSD",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "MEXC:CAWUSDT",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "MEXC:KOAIUSDT",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "MEXC:PIUSDT",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+        </div>
+
+        <div class="block-column">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "CRYPTO:SHIBUSD",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "CRYPTO:DOGEUSD",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "MEXC:WLDUSDT",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                            "width": "auto",
+                            "height": 450,
+                            "symbol": "MEXC:DECHATUSDT",
+                            "interval": "240",
+                            "timezone": "Asia/Tokyo",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "ja",
+                            "allow_symbol_change": true,
+                            "details": true,
+                            "calendar": false,
+                            "studies": [
+                                "STD;MA%1Cross"
+                            ],
+                            "support_host": "https://www.tradingview.com"
+                        }
+                    </script>
+            </div>
+            <!-- TradingView Widget END -->
+        </div>
+    </div>
+</body>
+</html>
