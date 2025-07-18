@@ -41,6 +41,7 @@ while :; do
     cleanup_stale_queue_files
     first_queue=$(ls -t "${QUEUE_DIR}"/queue.* 2>/dev/null | tail -n 1)
     if [[ "${first_queue}" == "${MY_QUEUE_FILE}" ]]; then
+        rm -f "${MY_QUEUE_FILE}"
         break
     fi
     sleep 1
