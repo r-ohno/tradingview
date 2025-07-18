@@ -2,26 +2,22 @@
 
 # ====== 設定 ======
 NPROC=${NPROC:-2}
-LOCK_FILE="/tmp/$(basename "${0}").lock"
+LOCK_BASE="/tmp/$(basename "${0}").lock"
 QUEUE_DIR="/tmp/$(basename "${0}").queue"
-MY_QUEUE_FILE="${QUEUE_DIR}/queue.$$"
+QUEUE_FILE="${QUEUE_DIR}/queue.$$"
 
 mkdir -p "${QUEUE_DIR}"
 
 # ====== クリーンアップ関数 ======
 cleanup() {
-    rm -f "${MY_QUEUE_FILE}"
-
-    # キューが空ならロックファイル削除
-    if [[ ! $(ls "${QUEUE_DIR}"/queue.* 2>/dev/null) ]]; then
-        rm -f "${LOCK_FILE}"
+    rm -f "${QUEUE_FILE}"
+    if [[ -n "${ACQUIRED_LOCK_FD}" ]]; then
+        eval "exec ${ACQUIRED_LOCK_FD}>&-"
     fi
 }
-
-# ====== trap設定 ======
 trap cleanup EXIT HUP INT TERM
 
-# ====== 古いキューの掃除 ======
+# ====== 古いキューファイル削除 ======
 cleanup_stale_queue_files() {
     for file in "${QUEUE_DIR}"/queue.*; do
         [[ -e "${file}" ]] || continue
@@ -32,34 +28,44 @@ cleanup_stale_queue_files() {
     done
 }
 
-# ====== 自分の順番待ちファイル作成 ======
+# ====== 自分のキューファイル作成 ======
 cleanup_stale_queue_files
-touch "${MY_QUEUE_FILE}"
+touch "${QUEUE_FILE}"
 
-# ====== 順番が来るまで待機 ======
+# ====== FIFO順番待ち ======
 while :; do
     cleanup_stale_queue_files
     first_queue=$(ls -t "${QUEUE_DIR}"/queue.* 2>/dev/null | tail -n 1)
-    if [[ "${first_queue}" == "${MY_QUEUE_FILE}" ]]; then
-        rm -f "${MY_QUEUE_FILE}"
+    if [[ "${first_queue}" == "${QUEUE_FILE}" ]]; then
         break
     fi
     sleep 1
 done
 
-# ====== 並列数制限付きで実行 ======
-(
-    exec 200>"${LOCK_FILE}"
+# ====== 並列ロックの取得 ======
+acquire_slot_lock() {
+    for ((i=1; i<=${NPROC}; i++)); do
+        lock_file="${LOCK_BASE}.${i}"
+        eval "exec ${i}>"'"${lock_file}"'
+        if flock -n "${i}"; then
+            ACQUIRED_LOCK_FD="${i}"
+            return 0
+        else
+            eval "exec ${i}>&-"
+        fi
+    done
+    return 1
+}
 
-    if ! flock -n 200; then
-        echo "[${$}] 並列数上限のため待機中..."
-        flock 200  # ブロック待ち
-    fi
+# ロック取得待機ループ
+until acquire_slot_lock; do
+    echo "[${$}] スロットが空くのを待機中..."
+    sleep 1
+done
 
-    ############################
-    echo "[${$}] 開始: $(date '+%Y-%m-%d %H:%M:%S')"
-    sleep 10
-    echo "[${$}] 終了: $(date '+%Y-%m-%d %H:%M:%S')"
-    ############################
+# ====== メイン処理 ======
+echo "[${$}] 開始: $(date '+%Y-%m-%d %H:%M:%S')"
+sleep 10  # ★ここに本処理を記述
+echo "[${$}] 終了: $(date '+%Y-%m-%d %H:%M:%S')"
 
-) 200>"${LOCK_FILE}"
+# cleanup は trap で自動実行されます
