@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ゲマトリア変換ツール</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    input, textarea, button {
+      margin-top: 10px;
+      padding: 8px;
+      width: 100%;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>ゲマトリア変換ツール</h2>
+
+  <label for="inputText">英単語や文章を入力してください:</label>
+  <textarea id="inputText" rows="3" placeholder="例: CAW, DOG, A HUNTERS DREAM"></textarea>
+
+  <button onclick="convertGematria()">ゲマトリア変換</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function convertGematria() {
+      const input = document.getElementById("inputText").value.toUpperCase();
+      let total = 0;
+      let breakdown = "";
+
+      for (let i = 0; i < input.length; i++) {
+        const char = input[i];
+        const code = char.charCodeAt(0);
+        if (code >= 65 && code <= 90) {  // A-Z
+          const value = code - 64;
+          total += value;
+          breakdown += `${char}=${value} `;
+        }
+      }
+
+      document.getElementById("result").innerHTML =
+        `変換結果: <br>${breakdown}<br><br>合計値: ${total}`;
+    }
+  </script>
+
+</body>
+</html>
